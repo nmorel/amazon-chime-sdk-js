@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "Audio Test",
+      "testImpl": "AudioTest.js",
+      "seleniumSessions": {
+        "safari": 2,
+        "android": 2
+      }
+    }
+  ],
+  "clients": [
+    {
+      "browserName": "chrome",
+      "browserVersion": "latest",
+      "platform": "MAC"
+    },
+    {
+      "browserName": "chrome",
+      "browserVersion": "latest",
+      "platform": "WINDOWS"
+    }
+  ]
+}
