@@ -66,9 +66,9 @@ The AWS.Chime and the AWS.ChimeSDKMediaPipelines are both Amazon Chime's AWS cli
 
 The demo will default to using the new AWS.ChimeSDKMediaPipelines namespace. Use `--use-chime-sdk-media-pipelines false` to opt out and use the AWS.Chime client. This flag is primarily intended for internal testing of the legacy AWS.Chime client.
 
-Furthermore, the demo will default to using the us-east-1 media pipelines control plane region. To override this behavior and use one of our [other available control plane regions/endpoints](https://docs.aws.amazon.com/chime-sdk/latest/dg/migrate-pipelines.html), use the flags:
+Furthermore, the demo will default to using the us-east-1 media pipelines control region. To override this behavior and use one of our [other available control plane regions/endpoints](https://docs.aws.amazon.com/chime-sdk/latest/dg/migrate-pipelines.html), use the flags:
 ```
---chime-sdk-media-pipelines-region <control plane region> --chime-sdk-media-pipelines-endpoint <service endpoint>
+--chime-sdk-media-pipelines-region <control region> --chime-sdk-media-pipelines-endpoint <service endpoint>
 ```
 
 Finally, [create the necessary service-linked role](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-pipeline-role.html) so that the demo app can call Amazon Chime SDK meetings on your behalf.
