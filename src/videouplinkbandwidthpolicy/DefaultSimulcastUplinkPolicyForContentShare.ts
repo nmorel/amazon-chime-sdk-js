@@ -7,13 +7,13 @@ import DefaultVideoCaptureAndEncodeParameter from '../videocaptureandencodeparam
 import VideoStreamDescription from '../videostreamindex/VideoStreamDescription';
 import VideoStreamIndex from '../videostreamindex/VideoStreamIndex';
 import ConnectionMetrics from './ConnectionMetrics';
+import ContentShareSimulcastEncodingParameters from './ContentShareSimulcastEncodingParameters';
 import SimulcastUplinkObserver from './SimulcastUplinkObserver';
 import SimulcastUplinkPolicy from './SimulcastUplinkPolicy';
-import VideoEncodingParameters from './VideoEncodingParameters';
 
 /**
- * [[DefaultSimulcastUplinkPolicy]] determines capture and encode
- *  parameters that reacts to estimated uplink bandwidth
+ * [[DefaultSimulcastUplinkPolicyForContentShare]] set the capture and encode
+ *  parameters based on constructor input parameters
  */
 export default class DefaultSimulcastUplinkPolicyForContentShare implements SimulcastUplinkPolicy {
   private videoIndex: VideoStreamIndex | null = null;
@@ -22,8 +22,7 @@ export default class DefaultSimulcastUplinkPolicyForContentShare implements Simu
 
   constructor(
     private logger: Logger,
-    private lowLayerEncodingParams?: VideoEncodingParameters,
-    private highLayerEncodingParams?: VideoEncodingParameters
+    private encodingParams?: ContentShareSimulcastEncodingParameters
   ) {}
 
   updateConnectionMetric(_metrics: ConnectionMetrics): void {
@@ -43,16 +42,16 @@ export default class DefaultSimulcastUplinkPolicyForContentShare implements Simu
     newMap.set(nameArr[0], {
       rid: nameArr[0],
       active: true,
-      scaleResolutionDownBy: this.lowLayerEncodingParams?.scaleResolutionDownBy || 2,
-      maxBitrate: (this.lowLayerEncodingParams?.maxBitrateKbps || 300) * toBps,
-      maxFramerate: this.lowLayerEncodingParams?.maxFramerate || 5,
+      scaleResolutionDownBy: this.encodingParams?.low?.scaleResolutionDownBy || 2,
+      maxBitrate: (this.encodingParams?.low?.maxBitrateKbps || 300) * toBps,
+      maxFramerate: this.encodingParams?.low?.maxFramerate || 5,
     });
     newMap.set(nameArr[1], {
       rid: nameArr[1],
       active: true,
-      scaleResolutionDownBy: this.highLayerEncodingParams?.scaleResolutionDownBy || 1,
-      maxBitrate: (this.highLayerEncodingParams?.maxBitrateKbps || 1200) * toBps,
-      maxFramerate: this.highLayerEncodingParams?.maxFramerate,
+      scaleResolutionDownBy: this.encodingParams?.high?.scaleResolutionDownBy || 1,
+      maxBitrate: (this.encodingParams?.high?.maxBitrateKbps || 1200) * toBps,
+      maxFramerate: this.encodingParams?.high?.maxFramerate,
     });
     this.logger.info(
       `simulcast: policy:chooseEncodingParameters newQualityMap: ${this.getQualityMapString(

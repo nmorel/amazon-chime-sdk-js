@@ -70,6 +70,7 @@ import ContentShareController from './contentsharecontroller/ContentShareControl
 import ContentShareControllerFacade from './contentsharecontroller/ContentShareControllerFacade';
 import ContentShareMediaStreamBroker from './contentsharecontroller/ContentShareMediaStreamBroker';
 import ContentShareObserver from './contentshareobserver/ContentShareObserver';
+import ContentShareSimulcastEncodingParameters from './videouplinkbandwidthpolicy/ContentShareSimulcastEncodingParameters';
 import CreatePeerConnectionTask from './task/CreatePeerConnectionTask';
 import CreateSDPTask from './task/CreateSDPTask';
 import DataMessage from './datamessage/DataMessage';
@@ -395,6 +396,7 @@ export {
   ContentShareControllerFacade,
   ContentShareMediaStreamBroker,
   ContentShareObserver,
+  ContentShareSimulcastEncodingParameters,
   CreatePeerConnectionTask,
   CreateSDPTask,
   DataMessage,

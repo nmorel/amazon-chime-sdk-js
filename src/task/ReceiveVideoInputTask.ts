@@ -74,7 +74,7 @@ export default class ReceiveVideoInputTask extends BaseTask {
         DefaultModality.MODALITY_CONTENT
       );
       const trackSettings = videoTracks[0].getSettings();
-      // In future, we would not want to do this for regular video too
+      // For video, we currently enforce 720p for simulcast. This logic should be removed in the future.
       if (this.context.enableSimulcast && !isContentAttendee) {
         const constraint = this.context.videoUplinkBandwidthPolicy.chooseMediaTrackConstraints();
         this.context.logger.info(`simulcast: choose constraint ${JSON.stringify(constraint)}`);

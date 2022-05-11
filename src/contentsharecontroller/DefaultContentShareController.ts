@@ -13,8 +13,8 @@ import DefaultModality from '../modality/DefaultModality';
 import AsyncScheduler from '../scheduler/AsyncScheduler';
 import { Maybe } from '../utils/Types';
 import VideoTile from '../videotile/VideoTile';
+import ContentShareSimulcastEncodingParameters from '../videouplinkbandwidthpolicy/ContentShareSimulcastEncodingParameters';
 import DefaultSimulcastUplinkPolicyForContentShare from '../videouplinkbandwidthpolicy/DefaultSimulcastUplinkPolicyForContentShare';
-import VideoEncodingParameters from '../videouplinkbandwidthpolicy/VideoEncodingParameters';
 import ContentShareConstants from './ContentShareConstants';
 import ContentShareController from './ContentShareController';
 import ContentShareMediaStreamBroker from './ContentShareMediaStreamBroker';
@@ -56,13 +56,13 @@ export default class DefaultContentShareController
 
   enableSimulcastForContentShare(
     enable: boolean,
-    lowLayerEncodingParams?: VideoEncodingParameters
+    encodingParams?: ContentShareSimulcastEncodingParameters
   ): void {
     this.contentAudioVideo.configuration.enableSimulcastForUnifiedPlanChromiumBasedBrowsers = true;
     if (enable) {
       this.contentAudioVideo.configuration.videoUplinkBandwidthPolicy = new DefaultSimulcastUplinkPolicyForContentShare(
         this.contentAudioVideo.logger,
-        lowLayerEncodingParams
+        encodingParams
       );
     } else {
       this.contentAudioVideo.configuration.videoUplinkBandwidthPolicy = undefined;
