@@ -34,10 +34,6 @@ export default class DefaultContentShareController
     contentShareConfiguration.credentials.externalUserId = configuration.credentials.externalUserId;
     contentShareConfiguration.credentials.joinToken =
       configuration.credentials.joinToken + ContentShareConstants.Modality;
-    // contentShareConfiguration.enableSimulcastForUnifiedPlanChromiumBasedBrowsers =
-    //   configuration.enableSimulcastForContentShare;
-    // contentShareConfiguration.videoUplinkBandwidthPolicy =
-    //   configuration.videoUplinkBandwidthPolicyForContentShare;
     return contentShareConfiguration;
   }
 
@@ -60,13 +56,13 @@ export default class DefaultContentShareController
 
   enableSimulcastForContentShare(
     enable: boolean,
-    lowerLayerEncodingParams?: VideoEncodingParameters
+    lowLayerEncodingParams?: VideoEncodingParameters
   ): void {
     this.contentAudioVideo.configuration.enableSimulcastForUnifiedPlanChromiumBasedBrowsers = true;
     if (enable) {
       this.contentAudioVideo.configuration.videoUplinkBandwidthPolicy = new DefaultSimulcastUplinkPolicyForContentShare(
         this.contentAudioVideo.logger,
-        lowerLayerEncodingParams
+        lowLayerEncodingParams
       );
     } else {
       this.contentAudioVideo.configuration.videoUplinkBandwidthPolicy = undefined;

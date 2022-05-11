@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.2.0] - 2022-04-27
 
 ### Added
-- Add browser support information to content share guide.
 
+- Add browser support information to content share guide.
 - Readd layers allocation negotiation in Chromium based browsers to avoid resubscribing to preemptively turn off simulcast streams or to switch layers. Avoid duplicate RTP header extension and changing extension id.
+- Add a new API `enableSimulcastForContentShare` to enable simulcast for content share so that content share could 
+  be shown in network constrained clients. The lower quality layer has 
+  300 kbps max bitrate, resolution scale factor of 2, and 5 max framerate.
 
 ### Removed
 

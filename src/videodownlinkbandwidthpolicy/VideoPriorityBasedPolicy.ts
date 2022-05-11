@@ -937,7 +937,7 @@ export default class VideoPriorityBasedPolicy implements VideoDownlinkBandwidthP
     // This does not apply to video as video uplink bandwidth could change the max bitrate value without resubscribing
     // so the max bitrate value might not be up-to-date on the downlink side. Also in the case of video, the avg
     // bitrate is close to the actual max bitrate.
-    if (bitrateKbp <= targetBitrateKbp && (!isContent || (maxBitrateKbps <= targetBitrateKbp))) {
+    if (bitrateKbp <= targetBitrateKbp && (!isContent || maxBitrateKbps <= targetBitrateKbp)) {
       this.logger.info(
         `bwe: canUpgrade: bitrateKbp: ${bitrateKbp} targetBitrateKbp: ${targetBitrateKbp}`
       );

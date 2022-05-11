@@ -1790,7 +1790,6 @@ export class DemoMeetingApp
       configuration.attendeePresenceTimeoutMs = Number(timeoutMs);
     }
     configuration.enableSimulcastForUnifiedPlanChromiumBasedBrowsers = this.enableSimulcast;
-    configuration.enableSimulcastForContentShare = this.enableSimulcastForContentShare;
     if (this.usePriorityBasedDownlinkPolicy) {
       this.priorityBasedDownlinkPolicy = new VideoPriorityBasedPolicy(this.meetingLogger, this.videoPriorityBasedPolicyConfig);
       configuration.videoDownlinkBandwidthPolicy = this.priorityBasedDownlinkPolicy;
@@ -1810,11 +1809,6 @@ export class DemoMeetingApp
     );
 
     if (this.enableSimulcastForContentShare) {
-      // configuration.videoUplinkBandwidthPolicyForContentShare = new
-      // SimulcastPolicy2(configuration.credentials.attendeeId, this.meetingLogger);
-      // configuration.videoUplinkBandwidthPolicyForContentShare = new DefaultSimulcastUplinkPolicyForContentShare(this.meetingLogger);
-      // configuration.videoUplinkBandwidthPolicyForContentShare = new
-      // DefaultSimulcastUplinkPolicy(configuration.credentials.attendeeId, this.meetingLogger);
       this.meetingSession.audioVideo.enableSimulcastForContentShare(true);
     }
 

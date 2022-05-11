@@ -15,7 +15,8 @@ export default interface ContentShareControllerFacade {
 
   enableSimulcastForContentShare(
     enable: boolean,
-    lowerLayerEncodingParams?: VideoEncodingParameters
+    lowLayerEncodingParams?: VideoEncodingParameters,
+    highLayerEncodingParams?: VideoEncodingParameters
   ): void;
 
   /**

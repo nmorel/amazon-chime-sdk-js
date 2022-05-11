@@ -451,10 +451,15 @@ export default class DefaultAudioVideoFacade implements AudioVideoFacade, AudioV
 
   enableSimulcastForContentShare(
     enable: boolean,
-    lowerLayerEncodingParams?: VideoEncodingParameters
+    lowLayerEncodingParams?: VideoEncodingParameters,
+    highLayerEncodingParams?: VideoEncodingParameters
   ): void {
     this.trace('enableSimulcastForContentShare');
-    this.contentShareController.enableSimulcastForContentShare(enable, lowerLayerEncodingParams);
+    this.contentShareController.enableSimulcastForContentShare(
+      enable,
+      lowLayerEncodingParams,
+      highLayerEncodingParams
+    );
   }
 
   startContentShare(stream: MediaStream): Promise<void> {

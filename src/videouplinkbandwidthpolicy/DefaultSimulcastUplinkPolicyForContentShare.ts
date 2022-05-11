@@ -20,7 +20,11 @@ export default class DefaultSimulcastUplinkPolicyForContentShare implements Simu
   private currLocalDescriptions: VideoStreamDescription[] = [];
   private nextLocalDescriptions: VideoStreamDescription[] = [];
 
-  constructor(private logger: Logger, private lowerLayerEncodingParams?: VideoEncodingParameters) {}
+  constructor(
+    private logger: Logger,
+    private lowLayerEncodingParams?: VideoEncodingParameters,
+    private highLayerEncodingParams?: VideoEncodingParameters
+  ) {}
 
   updateConnectionMetric(_metrics: ConnectionMetrics): void {
     // Noop
@@ -39,15 +43,16 @@ export default class DefaultSimulcastUplinkPolicyForContentShare implements Simu
     newMap.set(nameArr[0], {
       rid: nameArr[0],
       active: true,
-      scaleResolutionDownBy: this.lowerLayerEncodingParams?.scaleResolutionDownBy || 2,
-      maxBitrate: (this.lowerLayerEncodingParams?.maxBitrateKbps || 300) * toBps,
-      maxFramerate: this.lowerLayerEncodingParams?.maxFramerate || 5,
+      scaleResolutionDownBy: this.lowLayerEncodingParams?.scaleResolutionDownBy || 2,
+      maxBitrate: (this.lowLayerEncodingParams?.maxBitrateKbps || 300) * toBps,
+      maxFramerate: this.lowLayerEncodingParams?.maxFramerate || 5,
     });
     newMap.set(nameArr[1], {
       rid: nameArr[1],
       active: true,
-      scaleResolutionDownBy: 1,
-      maxBitrate: 1200 * toBps,
+      scaleResolutionDownBy: this.highLayerEncodingParams?.scaleResolutionDownBy || 1,
+      maxBitrate: (this.highLayerEncodingParams?.maxBitrateKbps || 1200) * toBps,
+      maxFramerate: this.highLayerEncodingParams?.maxFramerate,
     });
     this.logger.info(
       `simulcast: policy:chooseEncodingParameters newQualityMap: ${this.getQualityMapString(

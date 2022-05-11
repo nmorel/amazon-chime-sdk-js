@@ -101,17 +101,6 @@ export default class MeetingSessionConfiguration {
   keepLastFrameWhenPaused: boolean = false;
 
   /**
-   * Feature flag to enable Simulcast for content share
-   */
-  enableSimulcastForContentShare: boolean = false;
-
-  /**
-   * By default, content share attendee uses the default Nscale policy without subscribing to any video.
-   * This allows to use a custom uplink policy that can allow simulcast for content share for example.
-   */
-  videoUplinkBandwidthPolicyForContentShare: VideoUplinkBandwidthPolicy;
-
-  /**
    * Constructs a MeetingSessionConfiguration optionally with a chime:CreateMeeting and
    * chime:CreateAttendee response. You can pass in either a JSON object containing the
    * responses, or a JSON object containing the information in the Meeting and Attendee
