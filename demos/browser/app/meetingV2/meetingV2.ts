@@ -866,6 +866,10 @@ export class DemoMeetingApp
           this.audioVideo.chooseVideoInputQuality(1280, 720, 15);
           this.audioVideo.setVideoMaxBandwidthKbps(1400);
           break;
+        case 'klax':
+          this.audioVideo.chooseVideoInputQuality(320, 240, 25);
+          this.audioVideo.setVideoMaxBandwidthKbps(750);
+          break;
       }
       try {
         if (this.chosenVideoTransformDevice) {
